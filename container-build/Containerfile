@@ -11,7 +11,8 @@ LABEL io.openshift.expose-services="8080:http" \
 
 #Change port number in Apache HTTP server config file from default 80 to 8080
 RUN sed -i "s/Listen 80/Listen 8080/g" /etc/httpd/conf/httpd.conf \
-RUN sed -i "s/#ServerName www.example.com:80/ServerName 0.0.0.0:8080/g" /etc/httpd/conf/httpd.conf
+RUN sed -i "s/#ServerName www.example.com:80/ServerName 0.0.0.0:8080/g" \
+    /etc/httpd/conf/httpd.conf
 
 #Change groupID and permissions of folders where web server process reads and writes files
 RUN chgrp -R 0 /var/log/httpd /var/run.httpd && \
